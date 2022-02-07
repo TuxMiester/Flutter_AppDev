@@ -4,6 +4,8 @@ import 'reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
+import 'results.dart';
+import 'calculatorBrain.dart';
 
 enum Gender {
   male,
@@ -197,11 +199,34 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColour,
-            margin: EdgeInsets.only(top: 10.0),
-            height: kBottomBoxHeight,
-            width: double.infinity,
+          GestureDetector(
+            child: Container(
+              child: Center(
+                child: Text(
+                  'Calculate',
+                  style: kLargeTextStyle,
+                ),
+              ),
+              color: kBottomContainerColour,
+              margin: EdgeInsets.only(top: 10.0),
+              padding: EdgeInsets.only(bottom: 10.0),
+              height: kBottomBoxHeight,
+              width: double.infinity,
+            ),
+            onTap: () {
+              CalculatorBrain calc = CalculatorBrain(
+                height: height,
+                weight: weight,
+              );
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ResultsPage(
+                            bmiResults: calc.calculateBMI(),
+                            ResultText: calc.getResult(),
+                            Interpretation: calc.getInterpretation(),
+                          )));
+            },
           ),
         ],
       ),

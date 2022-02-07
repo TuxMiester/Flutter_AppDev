@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 import 'input_page.dart';
 import 'package:flutter/material.dart';
+import 'results.dart';
 
 void main() => runApp(BMICalculator());
 
